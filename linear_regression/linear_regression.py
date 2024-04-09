@@ -36,7 +36,7 @@ class LinearRegression:
 
 # Run tests
 
-# Make some sample data with only one feature. 
+# 1. Make some sample data with only one feature. 
 # i.e. x_i.shape == (1,)
 X = np.array([[1], [2], [3], [4], [5]])
 y = np.array([x*10 for x in range(1,6)]) # Expected output is 10*(input)
@@ -53,5 +53,29 @@ y_pred = model.predict(X_new)
 
 Y_actual = [60, 70]
 
+print("== Results for 1 Feature ==")
 print(f"Predictions: {y_pred}")
-print(f"Error: {np.mean(np.abs(y_pred - Y_actual))}")
+print(f"Avg. Error: {np.mean(np.abs(y_pred - Y_actual))}")
+print()
+
+# 2. Make some sample data with two features. 
+# i.e. x_i.shape == (1,)
+X = np.array([[1, 2], [2, 4], [3, 6], [4, 8], [5, 10]])
+y = np.array([2*x_1 + 3*x_2 for x_1, x_2 in X]) # Expected output is 10*(input)
+
+# Create model
+model = LinearRegression()
+
+# Train
+model.fit(X, y)
+
+# Run Inference
+X_new = np.array([[6, 12], [7, 14]])
+y_pred = model.predict(X_new)
+
+Y_actual = np.array([2*x_1 + 3*x_2 for x_1, x_2 in X_new])
+
+print("== Results for 2 Features ==")
+print(f"Predictions: {y_pred}")
+print(f"Avg. Error: {np.mean(np.abs(y_pred - Y_actual))}")
+print()
