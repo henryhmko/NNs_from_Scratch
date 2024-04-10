@@ -1,7 +1,7 @@
 import numpy as np
 
 class LinearRegression:
-    def __init__(self, learning_rate=0.03, num_iterations=100):
+    def __init__(self, learning_rate=0.03, num_iterations=1000):
         self.learning_rate = learning_rate
         self.num_iterations = num_iterations
         self.weights = None
@@ -76,6 +76,7 @@ y_pred = model.predict(X_new)
 Y_actual = np.array([2*x_1 + 3*x_2 for x_1, x_2 in X_new])
 
 print("== Results for 2 Features ==")
+print(f"Answers: {Y_actual}")
 print(f"Predictions: {y_pred}")
 print(f"Avg. Error: {np.mean(np.abs(y_pred - Y_actual))}")
 print()
