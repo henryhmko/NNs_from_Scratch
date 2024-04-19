@@ -32,7 +32,7 @@ class LinearRegression:
         # Weights are fixed now, so simply run y_hat = WX + b
         # return np.dot(self.weights, X) + self.bias
         return np.dot(X, self.weights) + self.bias
-    
+
 
 # Run tests
 
