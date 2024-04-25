@@ -1,6 +1,42 @@
 import numpy as np
 
 class MLP:
+    def __init__(self, input_size, hidden_size, output_size, learning_rate=0.03, num_iterations=10000):
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.output_size = output_size
+        self.learning_rate = learning_rate
+        self.num_iterations = num_iterations
+        # Initialize hidden weights as a matrix of (input_size x hidden_size)
+        self.weights_hidden = np.random.randn(input_size, hidden_size) # Recall that .randn ouputs values between [-1, 1] vs .rand outputs [0, 1)
+        # Initialize hidden bias as a vector of zeros with number of elements equal to hidden_size.
+        # In practice, it may be better to set elements of bias to epsilon~1e-5 to activate relu from the first pass instead of 0(which won't activate relu initially)
+        self.bias_hidden = np.zeros(hidden_size)
+        self.weights_output = np.random.randn(hidden_size, output_size)
+        self.bias_output = np.random.randn(output_size)
+
+    def _sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def _sigmoid_derivative(self, x):
+        # Check derivation in the notes
+        # Note that this is not the direct derivative you would get if you calculate it yourself. 
+        # We use a simplified version of the derivative for efficiency and the derivation in included in the notes.
+        return x * (1 - x)
+
+    def _forward(self, X):
+        self.hidden_layer = self._sigmoid(X @ self.weights_hidden + self.bias_hidden)
+        self.output_layer = self._sigmoid(self.hidden_layer @ self.weights_output + self.bias_output)
+    
+    def _backward(self, X, y, output):
+        output_error = y - output
+        output_grad = output_error * self._sigmoid_derivative(output)
+        
+        error_hidden = output_grad @ self.weights_output.T
+        
+
+# was in the middle but scrap and do again 
+class MLP:
     def __init__(self, input_size, hidden_size, output_size, learning_rate=0.1, num_iterations=1000):
         self.input_size = input_size
         self.hidden_size = hidden_size
