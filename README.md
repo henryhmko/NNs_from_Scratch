@@ -7,8 +7,8 @@ Only using numpy to create different NNs. This is more for me to understand how 
 ## Models to Tackle
 - [X] Linear Regression
 - [X] Logistic Regression
-- [ ] MLP (one hidden layer)
-- [ ] MLP (multiple hidden layers)
+- [X] MLP (one hidden layer)
+- [X] MLP (multiple hidden layers)
 - [ ] CNN
-- [ ] RNN (?)
+- [ ] RNN
 - [ ] Autoencoders
